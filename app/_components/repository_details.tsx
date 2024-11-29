@@ -23,6 +23,7 @@ export const RepositoryDetails = ({
 	repository,
 	commits,
 }: { repository: RepositoryDetailsType; commits: CommitDetailsType[] }) => {
+	console.log(repository)
 	return (
 		<div className="mx-auto mt-16 py-8 container">
 			<GoBackButton />
@@ -83,7 +84,7 @@ export const RepositoryDetails = ({
 							</p>
 							<p>
 								<strong>License:</strong>{" "}
-								{repository.license ? repository.license : "Not specified"}
+								{repository.license ? repository.license.name : "Not specified"}
 							</p>
 						</div>
 						<div>
