@@ -7,16 +7,20 @@ import Link from "next/link";
 const Page = async ({
 	searchParams,
 }: {
-	searchParams: {
+	searchParams: Promise<{
 		q: string;
 		range: string;
-	};
+	}>;
 }) => {
 	const users = await searchGithub<UserType>(
-		searchParams.range === "repositories" ? null : `users?q=${searchParams.q}`,
+		(await searchParams).range === "repositories"
+			? null
+			: `users?q=${(await searchParams).q}`,
 	);
 	const repos = await searchGithub<RepositoryType>(
-		searchParams.range === "users" ? null : `repositories?q=${searchParams.q}`,
+		(await searchParams).range === "users"
+			? null
+			: `repositories?q=${(await searchParams).q}`,
 	);
 	console.log(users);
 	return (

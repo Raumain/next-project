@@ -6,7 +6,6 @@ const Page = async ({
 }: {
 	params: Promise<{ username: string }>;
 }) => {
-	console.log((await params).username);
 	const [user, repositories] = await fetchUser((await params).username);
 	return (
 		<div className="mx-auto p-4 container">
